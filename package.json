@@ -1,0 +1,26 @@
+{
+  "name": "countries-react-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "predev": "rimraf .parcel-cache dist",
+    "new-component": "new-component",
+    "dev": "parcel public/index.html",
+    "build": "parcel build public/index.html"
+  },
+  "author": "shisinbin",
+  "dependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-react-app": "^7.0.1",
+    "new-component": "^5.0.2",
+    "parcel": "^2.12.0",
+    "prettier": "^3.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rimraf": "^5.0.7"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "staticFiles": {
+    "staticPath": "assets"
+  }
+}
