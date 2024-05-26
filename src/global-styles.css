@@ -13,6 +13,7 @@
 html,
 body {
   height: 100%;
+  background: hsl(60, 100%, 84%);
 }
 body {
   line-height: 1.5;
