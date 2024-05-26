@@ -1,8 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Moon } from 'react-feather';
 
 import MaxWidthWrapper from '../MaxWidthWrapper';
-import styled from 'styled-components';
+import { ELEVATIONS } from '../../constants';
 
 function Header() {
   return (
@@ -20,6 +21,7 @@ function Header() {
 
 const Wrapper = styled.header`
   background-color: var(--white);
+  box-shadow: ${ELEVATIONS.small};
 `;
 
 const Content = styled(MaxWidthWrapper)`

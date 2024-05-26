@@ -4,17 +4,14 @@ import MaxWidthWrapper from '../MaxWidthWrapper';
 import GlobalStyles from '../GlobalStyles/GlobalStyles';
 import styled from 'styled-components';
 import Card from '../Card';
-import CountrySearch from '../CountrySearch';
+import CountrySearchForm from '../CountrySearchForm';
 
 function App() {
   return (
     <>
       <Header />
       <MaxWidthWrapper as='main'>
-        <CountrySearch />
-        <div>
-          <button>Back</button>
-        </div>
+        <CountrySearchForm />
         <CountryGrid>
           <Card>1</Card>
           <Card>2</Card>

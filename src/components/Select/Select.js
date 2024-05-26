@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ChevronDown } from 'react-feather';
 
 import { getDisplayedValue } from './Select.helpers';
+import { ELEVATIONS } from '../../constants';
 
 function Select({ id, value, children, ...delegated }) {
   /*
@@ -14,7 +15,7 @@ function Select({ id, value, children, ...delegated }) {
 
   return (
     <Wrapper>
-      <NativeSelect id={id} {...delegated}>
+      <NativeSelect id={id} value={value} {...delegated}>
         {children}
       </NativeSelect>
       <PresentationalBit>
@@ -47,6 +48,7 @@ const PresentationalBit = styled.div`
   border-radius: 8px;
   padding-right: 52px;
   background-color: var(--white);
+  box-shadow: ${ELEVATIONS.medium};
 
   ${NativeSelect}:focus + & {
     outline: 1px dotted #212121;

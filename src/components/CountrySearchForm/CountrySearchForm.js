@@ -1,10 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import Select from '../Select';
+import IconInput from '../IconInput';
 
 const REGIONS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
-function CountrySearch() {
+function CountrySearchForm() {
+  const [searchTerm, setSearchTerm] = React.useState('');
   const [region, setRegion] = React.useState('');
 
   const id = React.useId();
@@ -12,9 +15,16 @@ function CountrySearch() {
   const regionId = `${id}-region`;
 
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
-      <input type='text' id={searchTermId} />
-      <label htmlFor={regionId}>Filter By Region:</label>
+    <Wrapper onSubmit={(ev) => ev.preventDefault()}>
+      <IconInput
+        id={searchTermId}
+        label='Search'
+        placeholder='Search for a country...'
+        type='text'
+        value={searchTerm}
+        onChange={(ev) => setSearchTerm(ev.target.value)}
+      />
+      <SelectLabel htmlFor={regionId}>Filter by Region:</SelectLabel>
       <Select
         id={regionId}
         value={region}
@@ -31,8 +41,19 @@ function CountrySearch() {
           </option>
         ))}
       </Select>
-    </form>
+    </Wrapper>
   );
 }
 
-export default CountrySearch;
+const Wrapper = styled.form`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+`;
+
+const SelectLabel = styled.label`
+  font-size: 14px;
+`;
+
+export default CountrySearchForm;

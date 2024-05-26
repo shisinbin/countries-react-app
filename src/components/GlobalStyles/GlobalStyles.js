@@ -97,6 +97,8 @@ const GlobalStyles = createGlobalStyle`
     --font-weight-light: ${WEIGHTS.light};
     --font-weight-bold: ${WEIGHTS.bold};
     --font-weight-extrabold: ${WEIGHTS.extrabold};
+
+    --shadow-color: 0deg 0% 88%;
   }
   body {
     background-color: var(--light-gray-background);
