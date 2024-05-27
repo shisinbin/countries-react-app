@@ -6,9 +6,14 @@ import IconInput from '../IconInput';
 
 const REGIONS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
-function CountrySearchForm() {
-  const [searchTerm, setSearchTerm] = React.useState('');
-  const [region, setRegion] = React.useState('');
+function CountrySearchForm({
+  searchTerm,
+  setSearchTerm,
+  region,
+  setRegion,
+}) {
+  // const [searchTerm, setSearchTerm] = React.useState('');
+  // const [region, setRegion] = React.useState('');
 
   const id = React.useId();
   const searchTermId = `${id}-searchTerm`;
@@ -31,9 +36,6 @@ function CountrySearchForm() {
         name='region'
         onChange={(event) => setRegion(event.target.value)}
       >
-        {/* <option value={''} disabled selected>
-          Filter by region
-        </option> */}
         <option value={''}>All</option>
         {REGIONS.map((region) => (
           <option value={region} key={region}>

@@ -42,12 +42,17 @@ const TextInput = styled.input`
   border: none;
   border-radius: 8px;
   box-shadow: ${ELEVATIONS.medium};
-
   flex: 1;
 
   &::placeholder {
     font-size: 14px;
   }
+
+  /* &:hover,
+  &:focus {
+    box-shadow: ${ELEVATIONS.large};
+    transform: scale(1.01);
+  } */
 `;
 
 export default IconInput;
