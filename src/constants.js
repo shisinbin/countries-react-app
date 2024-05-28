@@ -1,3 +1,5 @@
+export const COUNTRIES_PER_PAGE = 12;
+
 export const COLORS = {
   darkBlue: {
     elements: `hsl(209deg 23% 22%)`,

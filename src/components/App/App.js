@@ -9,6 +9,7 @@ import CountryResultsGrid from '../CountryResultsGrid/CountryResultsGrid';
 
 import GlobalStyles from '../GlobalStyles/GlobalStyles';
 import { lightTheme, darkTheme } from '../../themes';
+import { COUNTRIES_PER_PAGE } from '../../constants';
 
 const ENDPOINT = 'http://localhost:8000/countries';
 
@@ -22,7 +23,14 @@ function App() {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [region, setRegion] = React.useState('');
 
-  const [theme, setTheme] = React.useState('dark');
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  // light || dark
+  const [theme, setTheme] = React.useState(() => {
+    const savedMode =
+      window.localStorage.getItem('preferred-mode') || 'light';
+    return savedMode;
+  });
 
   function themeToggler() {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -55,6 +63,10 @@ function App() {
   }, []);
 
   const filteredCountries = React.useMemo(() => {
+    // any time it's required to filter the countries,
+    // set current page to the first
+    setCurrentPage(1);
+
     return countries.filter((country) => {
       const matchesSearchTerm = country.name
         .toLowerCase()
@@ -74,6 +86,25 @@ function App() {
 
   const clearSearchTerm = () => setSearchTerm('');
 
+  const totalPages = Math.ceil(
+    filteredCountries.length / COUNTRIES_PER_PAGE
+  );
+
+  const currentCountries = filteredCountries.slice(
+    (currentPage - 1) * COUNTRIES_PER_PAGE,
+    currentPage * COUNTRIES_PER_PAGE
+  );
+
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  React.useEffect(() => {
+    window.localStorage.setItem('preferred-mode', theme);
+  }, [theme]);
+
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Header theme={theme} themeToggler={themeToggler} />
@@ -87,7 +118,7 @@ function App() {
           />
         ) : (
           <>
-            {status === 'idle' && <p>Hello</p>}
+            {status === 'idle' && null}
             {status === 'loading' && <p>Loading...</p>}
             {status === 'error' && <p>Error</p>}
             {status === 'success' && (
@@ -102,6 +133,10 @@ function App() {
                 <CountryResultsGrid
                   filteredCountries={filteredCountries}
                   handleCountrySelect={handleCountrySelect}
+                  currentCountries={currentCountries}
+                  currentPage={currentPage}
+                  handlePageChange={handlePageChange}
+                  totalPages={totalPages}
                 />
               </>
             )}

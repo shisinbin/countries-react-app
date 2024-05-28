@@ -14,7 +14,7 @@ function CountryCard({ country, handleCountrySelect }) {
         </ImageWrapper>
         <Details>
           <Heading>{name}</Heading>
-          {population && (
+          {Number.isFinite(population) && (
             <p>
               <strong>Population:</strong>{' '}
               {population.toLocaleString()}
