@@ -36,6 +36,7 @@ const IconWrapper = styled.div`
 `;
 
 const TextInput = styled.input`
+  --shadow-color: ${({ theme }) => theme.shadow};
   padding: 12px 16px;
   padding-left: calc(24px * 2);
   outline-offset: 2px;
@@ -43,9 +44,16 @@ const TextInput = styled.input`
   border-radius: 8px;
   box-shadow: ${ELEVATIONS.medium};
   flex: 1;
+  background-color: ${({ theme }) => theme.elements};
+  /* color: ${({ theme }) => theme.text}; */
 
   &::placeholder {
     font-size: 14px;
+    /* really hacky solution here... */
+    /* color: ${({ theme }) =>
+      theme.inputText === 'var(--dark-gray-input)'
+        ? theme.inputText
+        : 'inherit'}; */
   }
 
   /* &:hover,

@@ -3,6 +3,14 @@ import styled from 'styled-components';
 import { CornerDownLeft } from 'react-feather';
 import { ELEVATIONS } from '../../constants';
 
+function InfoDetail({ label, children }) {
+  return (
+    <p>
+      <strong>{label}:</strong> {children}
+    </p>
+  );
+}
+
 function CountryDetail({
   country,
   handleGoBack,
@@ -108,20 +116,13 @@ function CountryDetail({
   );
 }
 
-function InfoDetail({ label, children }) {
-  return (
-    <p>
-      <strong>{label}:</strong> {children}
-    </p>
-  );
-}
-
 const Back = styled.button`
+  --shadow-color: ${({ theme }) => theme.shadow};
   padding: 12px 16px;
   position: relative;
   padding-left: 44px;
   border-radius: 8px;
-  background: var(--white);
+  background: ${({ theme }) => theme.elements};
   box-shadow: ${ELEVATIONS.medium};
   font-size: 14px;
   will-change: transform;
@@ -193,9 +194,17 @@ const Tag = styled.li`
 `;
 
 const TagButton = styled.button`
+  --shadow-color: ${({ theme }) => theme.shadow};
   padding: 4px 16px;
   border-radius: 4px;
-  border: 1px dotted lightgray;
+  /* border: 1px dotted lightgray; */
+  background-color: ${({ theme }) => theme.elements};
+  box-shadow: ${ELEVATIONS.small};
+
+  &:hover {
+    box-shadow: ${ELEVATIONS.medium};
+    transform: scale(1.01);
+  }
 `;
 
 export default CountryDetail;

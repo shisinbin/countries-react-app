@@ -1,16 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
-import useSWR from 'swr';
+import { ThemeProvider } from 'styled-components';
 
 import Header from '../Header';
 import CountrySearchForm from '../CountrySearchForm';
 import MaxWidthWrapper from '../MaxWidthWrapper';
-import CountryCard from '../CountryCard/CountryCard';
-import Card from '../Card';
+import CountryDetail from '../CountryDetail/CountryDetail';
+import CountryResultsGrid from '../CountryResultsGrid/CountryResultsGrid';
 
 import GlobalStyles from '../GlobalStyles/GlobalStyles';
-import CountryResultsGrid from '../CountryResultsGrid/CountryResultsGrid';
-import CountryDetail from '../CountryDetail/CountryDetail';
+import { lightTheme, darkTheme } from '../../themes';
 
 const ENDPOINT = 'http://localhost:8000/countries';
 
@@ -23,6 +21,12 @@ function App() {
 
   const [searchTerm, setSearchTerm] = React.useState('');
   const [region, setRegion] = React.useState('');
+
+  const [theme, setTheme] = React.useState('dark');
+
+  function themeToggler() {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  }
 
   React.useEffect(() => {
     setStatus('loading');
@@ -69,8 +73,8 @@ function App() {
   const handleGoBack = () => setSelectedCountry(null);
 
   return (
-    <>
-      <Header />
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <Header theme={theme} themeToggler={themeToggler} />
       <MaxWidthWrapper as='main'>
         {selectedCountry ? (
           <CountryDetail
@@ -103,7 +107,7 @@ function App() {
       </MaxWidthWrapper>
 
       <GlobalStyles />
-    </>
+    </ThemeProvider>
   );
 }
 

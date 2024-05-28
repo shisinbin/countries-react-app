@@ -43,10 +43,11 @@ const WrapperButton = styled.button`
 `;
 
 const Wrapper = styled.article`
+  --shadow-color: ${({ theme }) => theme.shadow};
   flex-grow: 1;
   width: 100%;
   padding: 16px;
-  background-color: var(--white);
+  background-color: ${({ theme }) => theme.elements};
   border-radius: 8px;
   box-shadow: ${ELEVATIONS.medium};
   cursor: pointer;

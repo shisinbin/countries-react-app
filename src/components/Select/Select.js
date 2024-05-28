@@ -43,11 +43,12 @@ const NativeSelect = styled.select`
 `;
 
 const PresentationalBit = styled.div`
+  --shadow-color: ${({ theme }) => theme.shadow};
+  background-color: ${({ theme }) => theme.elements};
   font-size: 14px;
   padding: 12px 16px;
   border-radius: 8px;
   padding-right: 52px;
-  background-color: var(--white);
   box-shadow: ${ELEVATIONS.medium};
 
   ${NativeSelect}:focus + & {

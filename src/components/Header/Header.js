@@ -1,18 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Moon } from 'react-feather';
+import { Moon, Sun } from 'react-feather';
 
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import { ELEVATIONS } from '../../constants';
 
-function Header() {
+function Header({ theme, themeToggler }) {
   return (
     <Wrapper>
       <Content>
         <Title>Where in the world?</Title>
-        <ThemeAction>
-          <Moon size={14} />
-          Dark Mode
+        <ThemeAction onClick={themeToggler}>
+          {theme === 'light' ? (
+            <>
+              <Moon size={14} />
+              Dark Mode
+            </>
+          ) : (
+            <>
+              <Sun size={14} />
+              Light Mode
+            </>
+          )}
         </ThemeAction>
       </Content>
     </Wrapper>
@@ -20,7 +29,8 @@ function Header() {
 }
 
 const Wrapper = styled.header`
-  background-color: var(--white);
+  --shadow-color: ${({ theme }) => theme.shadow};
+  background-color: ${({ theme }) => theme.elements};
   box-shadow: ${ELEVATIONS.small};
   margin-bottom: 32px;
 `;

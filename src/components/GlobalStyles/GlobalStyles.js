@@ -80,6 +80,10 @@ const GlobalStyles = createGlobalStyle`
     color: inherit;
   }
 
+  input {
+    color: inherit;
+  }
+
   a {
     color: inherit;
     text-decoration: none;
@@ -98,11 +102,12 @@ const GlobalStyles = createGlobalStyle`
     --font-weight-bold: ${WEIGHTS.bold};
     --font-weight-extrabold: ${WEIGHTS.extrabold};
 
-    --shadow-color: 0deg 0% 88%;
+    --shadow-light: 0deg 0% 88%;
+    --shadow-dark: 207deg 20% 12%;
   }
   body {
-    background-color: var(--light-gray-background);
-    color: var(--dark-blue-text);
+    background-color: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
   }
   /*
     Dark Blue (Dark Mode Elements): hsl(209, 23%, 22%)
