@@ -10,14 +10,15 @@ import CountryResultsGrid from '../CountryResultsGrid/CountryResultsGrid';
 import GlobalStyles from '../GlobalStyles/GlobalStyles';
 import { lightTheme, darkTheme } from '../../themes';
 import { COUNTRIES_PER_PAGE } from '../../constants';
+import { normaliseApiData, normaliseJsonData } from '../../helpers';
 
-const ENDPOINT = 'http://localhost:8000/countries';
+import localData from '../../../data/data.json';
 
 function App() {
   const [countries, setCountries] = React.useState([]);
   const [selectedCountry, setSelectedCountry] = React.useState(null);
 
-  // idle || loading || success
+  // idle || loading || success || error
   const [status, setStatus] = React.useState('idle');
 
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -36,39 +37,69 @@ function App() {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   }
 
+  // React.useEffect(() => {
+  //   const ENDPOINT = 'http://localhost:8000/countries';
+  //   setStatus('loading');
+
+  //   async function fetchData() {
+  //     try {
+  //       const response = await fetch(ENDPOINT);
+
+  //       if (!response.ok) {
+  //         throw new Error(
+  //           `Error: (${response.status}) ${response.statusText}`
+  //         );
+  //       }
+
+  //       const json = await response.json();
+
+  //       setCountries(normaliseJsonData(json));
+  //       setStatus('success');
+  //     } catch (err) {
+  //       console.error(err.message);
+  //       setStatus('error');
+  //     }
+  //   }
+
+  //   fetchData();
+  // }, []);
+
   React.useEffect(() => {
+    const apiEndpoint = 'https://restcountries.com/v3.1/all';
+
     setStatus('loading');
 
-    async function fetchData() {
+    async function fetchApiData() {
       try {
-        const response = await fetch(ENDPOINT);
+        const response = await fetch(apiEndpoint);
 
         if (!response.ok) {
           throw new Error(
             `Error: (${response.status}) ${response.statusText}`
           );
         }
-
         const json = await response.json();
 
-        setCountries(json);
+        setCountries(normaliseApiData(json));
         setStatus('success');
       } catch (err) {
-        console.error(err.message);
-        setStatus('error');
+        console.error(err);
+
+        setCountries(normaliseJsonData(localData.countries));
+        setStatus('success'); // I guess it is some kind of success...
       }
     }
 
-    fetchData();
+    fetchApiData();
   }, []);
 
   const filteredCountries = React.useMemo(() => {
     // any time it's required to filter the countries,
-    // set current page to the first
+    // reset the current page
     setCurrentPage(1);
 
     return countries.filter((country) => {
-      const matchesSearchTerm = country.name
+      const matchesSearchTerm = country.countryName
         .toLowerCase()
         .includes(searchTerm.trim().toLowerCase());
       const matchesRegion =
@@ -131,7 +162,6 @@ function App() {
                   clearSearchTerm={clearSearchTerm}
                 />
                 <CountryResultsGrid
-                  filteredCountries={filteredCountries}
                   handleCountrySelect={handleCountrySelect}
                   currentCountries={currentCountries}
                   currentPage={currentPage}

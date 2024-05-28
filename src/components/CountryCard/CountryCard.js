@@ -5,15 +5,15 @@ import Card from '../Card';
 import { ELEVATIONS } from '../../constants';
 
 function CountryCard({ country, handleCountrySelect }) {
-  const { name, population, flag, region, capital } = country;
+  const { countryName, population, flag, region, capital } = country;
   return (
     <WrapperButton onClick={() => handleCountrySelect(country)}>
       <Wrapper>
         <ImageWrapper>
-          <Image alt={`Flag of ${name}`} src={flag} />
+          <Image alt={`Flag of ${countryName}`} src={flag} />
         </ImageWrapper>
         <Details>
-          <Heading>{name}</Heading>
+          <Heading>{countryName}</Heading>
           {Number.isFinite(population) && (
             <p>
               <strong>Population:</strong>{' '}

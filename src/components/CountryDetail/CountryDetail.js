@@ -19,8 +19,8 @@ function CountryDetail({
 }) {
   const {
     flag,
-    name: countryName,
-    nativeName,
+    countryName,
+    nativeNames,
     population,
     region,
     subregion,
@@ -53,9 +53,15 @@ function CountryDetail({
         <Details>
           <Heading>{countryName}</Heading>
           <Info>
-            {nativeName && (
-              <InfoDetail label={'Native name'}>
-                {nativeName}
+            {nativeNames.length > 0 && (
+              <InfoDetail
+                label={
+                  nativeNames.length > 1
+                    ? 'Native names'
+                    : 'Native name'
+                }
+              >
+                {nativeNames.join(', ')}
               </InfoDetail>
             )}
             {population && (
@@ -76,21 +82,25 @@ function CountryDetail({
             )}
             {topLevelDomain && (
               <InfoDetail label={'Top Level Domain'}>
-                {topLevelDomain.at(0)}
+                {topLevelDomain}
               </InfoDetail>
             )}
             {currencies && currencies.length > 0 && (
-              <InfoDetail label={'Currencies'}>
-                {currencies
-                  .map((currencyObj) => currencyObj.name)
-                  .join(', ')}
+              <InfoDetail
+                label={
+                  currencies.length > 1 ? 'Currencies' : 'Currency'
+                }
+              >
+                {currencies.join(', ')}
               </InfoDetail>
             )}
             {languages && languages.length > 0 && (
-              <InfoDetail label={'Languages'}>
-                {languages
-                  .map((languageObj) => languageObj.name)
-                  .join(', ')}
+              <InfoDetail
+                label={
+                  languages.length > 1 ? 'Languages' : 'Language'
+                }
+              >
+                {languages.join(', ')}
               </InfoDetail>
             )}
           </Info>
@@ -103,7 +113,7 @@ function CountryDetail({
                     <TagButton
                       onClick={() => handleCountrySelect(country)}
                     >
-                      {country.name}
+                      {country.countryName}
                     </TagButton>
                   </Tag>
                 ))}

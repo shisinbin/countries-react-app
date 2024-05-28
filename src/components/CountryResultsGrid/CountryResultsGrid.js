@@ -17,7 +17,6 @@ function CountryResultsGrid({
   totalPages,
   handlePageChange,
 }) {
-  console.log(totalPages);
   return (
     <>
       <Wrapper>
