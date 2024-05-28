@@ -51,7 +51,7 @@ const Wrapper = styled.form`
   display: flex;
   align-items: center;
   gap: 16px;
-  margin: 32px 0;
+  margin-bottom: 32px;
 `;
 
 const SelectLabel = styled.label`

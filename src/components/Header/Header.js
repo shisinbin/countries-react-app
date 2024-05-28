@@ -22,6 +22,7 @@ function Header() {
 const Wrapper = styled.header`
   background-color: var(--white);
   box-shadow: ${ELEVATIONS.small};
+  margin-bottom: 32px;
 `;
 
 const Content = styled(MaxWidthWrapper)`

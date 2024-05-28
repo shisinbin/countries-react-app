@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Card from '../Card';
+import { ELEVATIONS } from '../../constants';
 
-function CountryCard({ country }) {
+function CountryCard({ country, handleCountrySelect }) {
   const { name, population, flag, region, capital } = country;
   return (
-    <Card>
+    <WrapperButton onClick={() => handleCountrySelect(country)}>
       <Wrapper>
         <ImageWrapper>
           <Image alt={`Flag of ${name}`} src={flag} />
@@ -31,14 +32,33 @@ function CountryCard({ country }) {
           )}
         </Details>
       </Wrapper>
-    </Card>
+    </WrapperButton>
   );
 }
 
+const WrapperButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+`;
+
 const Wrapper = styled.article`
-  /* display: flex;
-  flex-direction: column; */
-  font-size: 14px;
+  flex-grow: 1;
+  width: 100%;
+  padding: 16px;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: ${ELEVATIONS.medium};
+  cursor: pointer;
+
+  /* To hide flag beyond rounded corners */
+  overflow: hidden;
+
+  &:hover,
+  &:focus {
+    box-shadow: ${ELEVATIONS.large};
+    transform: scale(1.01);
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -58,6 +78,7 @@ const Image = styled.img`
 const Details = styled.section`
   margin-bottom: -16px;
   padding-bottom: 32px;
+  font-size: 14px;
 `;
 
 const Heading = styled.h2`

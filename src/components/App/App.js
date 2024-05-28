@@ -10,26 +10,11 @@ import Card from '../Card';
 
 import GlobalStyles from '../GlobalStyles/GlobalStyles';
 import CountryResultsGrid from '../CountryResultsGrid/CountryResultsGrid';
+import CountryDetail from '../CountryDetail/CountryDetail';
 
 const ENDPOINT = 'http://localhost:8000/countries';
 
-// async function fetcher(endpoint) {
-//   const response = await fetch(endpoint);
-
-//   if (!response.ok) {
-//     throw new Error('Network response was no okay');
-//   }
-
-//   return await response.json();
-// }
-
 function App() {
-  // const {
-  //   data: countries,
-  //   isLoading,
-  //   error,
-  // } = useSWR(ENDPOINT, fetcher);
-
   const [countries, setCountries] = React.useState([]);
   const [selectedCountry, setSelectedCountry] = React.useState(null);
 
@@ -77,29 +62,42 @@ function App() {
     });
   }, [countries, searchTerm, region]);
 
+  const handleCountrySelect = (country) => {
+    setSelectedCountry(country);
+  };
+
+  const handleGoBack = () => setSelectedCountry(null);
+
   return (
     <>
       <Header />
       <MaxWidthWrapper as='main'>
-        {status === 'idle' && <p>Hello</p>}
-        {status === 'loading' && <p>Loading...</p>}
-        {status === 'error' && <p>Error</p>}
-        {status === 'success' && (
+        {selectedCountry ? (
+          <CountryDetail
+            country={selectedCountry}
+            handleGoBack={handleGoBack}
+            countries={countries}
+            handleCountrySelect={handleCountrySelect}
+          />
+        ) : (
           <>
-            <CountrySearchForm
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-              region={region}
-              setRegion={setRegion}
-            />
-            <CountryResultsGrid>
-              {filteredCountries?.map((country) => (
-                <CountryCard
-                  key={country.numericCode}
-                  country={country}
+            {status === 'idle' && <p>Hello</p>}
+            {status === 'loading' && <p>Loading...</p>}
+            {status === 'error' && <p>Error</p>}
+            {status === 'success' && (
+              <>
+                <CountrySearchForm
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                  region={region}
+                  setRegion={setRegion}
                 />
-              ))}
-            </CountryResultsGrid>
+                <CountryResultsGrid
+                  filteredCountries={filteredCountries}
+                  handleCountrySelect={handleCountrySelect}
+                />
+              </>
+            )}
           </>
         )}
       </MaxWidthWrapper>
