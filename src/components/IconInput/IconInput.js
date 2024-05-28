@@ -1,18 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Search } from 'react-feather';
+import { Search, X } from 'react-feather';
 
 import VisuallyHidden from '../VisuallyHidden';
 import { ELEVATIONS } from '../../constants';
 
-function IconInput({ id, label, ...delegated }) {
+function IconInput({
+  id,
+  label,
+  clearSearchTerm,
+  value,
+  ...delegated
+}) {
   return (
     <Wrapper htmlFor={id}>
       <VisuallyHidden>{label}</VisuallyHidden>
       <IconWrapper>
         <Search size={24} strokeWidth={1.5} />
       </IconWrapper>
-      <TextInput id={id} {...delegated} />
+      <TextInput id={id} value={value} {...delegated} />
+      {value !== '' && (
+        <ClearButton type='button' onClick={clearSearchTerm}>
+          <X size={24} strokeWidth={0.5} />
+        </ClearButton>
+      )}
     </Wrapper>
   );
 }
@@ -61,6 +72,18 @@ const TextInput = styled.input`
     box-shadow: ${ELEVATIONS.large};
     transform: scale(1.01);
   } */
+`;
+
+const ClearButton = styled.button`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 48px;
+  width: 48px;
+  margin: auto;
+  display: grid;
+  place-content: center;
 `;
 
 export default IconInput;

@@ -11,6 +11,7 @@ function CountrySearchForm({
   setSearchTerm,
   region,
   setRegion,
+  clearSearchTerm,
 }) {
   // const [searchTerm, setSearchTerm] = React.useState('');
   // const [region, setRegion] = React.useState('');
@@ -28,6 +29,7 @@ function CountrySearchForm({
         type='text'
         value={searchTerm}
         onChange={(ev) => setSearchTerm(ev.target.value)}
+        clearSearchTerm={clearSearchTerm}
       />
       <SelectLabel htmlFor={regionId}>Filter by Region:</SelectLabel>
       <Select

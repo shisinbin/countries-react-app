@@ -72,6 +72,8 @@ function App() {
 
   const handleGoBack = () => setSelectedCountry(null);
 
+  const clearSearchTerm = () => setSearchTerm('');
+
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Header theme={theme} themeToggler={themeToggler} />
@@ -95,6 +97,7 @@ function App() {
                   setSearchTerm={setSearchTerm}
                   region={region}
                   setRegion={setRegion}
+                  clearSearchTerm={clearSearchTerm}
                 />
                 <CountryResultsGrid
                   filteredCountries={filteredCountries}
