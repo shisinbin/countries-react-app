@@ -9,13 +9,15 @@ import CountryResultsGrid from '../CountryResultsGrid';
 import Loader from '../Loader';
 
 import GlobalStyles from '../GlobalStyles';
-import { lightTheme, darkTheme } from '../../themes';
 import { COUNTRIES_PER_PAGE } from '../../constants';
 
 import { useFetch } from '../../hooks/useFetch';
+import { useTheme } from '../../hooks/useTheme';
 
 function App() {
   const { data: countries, isLoading } = useFetch();
+  const { theme, themeToggler, currentTheme } = useTheme();
+
   const [selectedCountry, setSelectedCountry] = React.useState(null);
 
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -23,20 +25,9 @@ function App() {
 
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  // light || dark
-  const [theme, setTheme] = React.useState(() => {
-    const savedMode =
-      window.localStorage.getItem('preferred-mode') || 'light';
-    return savedMode;
-  });
-
-  function themeToggler() {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-  }
-
   const filteredCountries = React.useMemo(() => {
     // any time it's required to filter the countries,
-    // reset the current page
+    // reset the current page to 1
     setCurrentPage(1);
 
     return countries.filter((country) => {
@@ -73,12 +64,8 @@ function App() {
     }
   };
 
-  React.useEffect(() => {
-    window.localStorage.setItem('preferred-mode', theme);
-  }, [theme]);
-
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={currentTheme}>
       <Header theme={theme} themeToggler={themeToggler} />
       <MaxWidthWrapper as='main'>
         {selectedCountry ? (
