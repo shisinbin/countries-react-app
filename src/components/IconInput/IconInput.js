@@ -56,17 +56,12 @@ const TextInput = styled.input`
   box-shadow: ${ELEVATIONS.medium};
   flex: 1;
   background-color: ${({ theme }) => theme.elements};
-  /* color: ${({ theme }) => theme.text}; */
 
   &::placeholder {
     font-size: 14px;
     /* really hacky solution here... */
-    /* color: ${({ theme }) =>
-      theme.inputText === 'var(--dark-gray-input)'
-        ? theme.inputText
-        : 'inherit'}; */
+    color: ${({ theme }) => theme.placeholderText};
   }
-
   /* &:hover,
   &:focus {
     box-shadow: ${ELEVATIONS.large};

@@ -1,9 +1,11 @@
 export const lightTheme = {
   background: 'var(--light-gray-background)',
   elements: 'var(--white)',
-  text: 'var(--dark-blue-text',
+  text: 'var(--dark-blue-text)',
   shadow: 'var(--shadow-light)',
-  inputText: 'var(--dark-gray-input)',
+  placeholderText: 'var(--dark-gray-input)',
+  loaderTrack: 'hsl(0deg 0% 35%)',
+  loaderFill: 'hsl(--dark-blue-background)',
 };
 
 export const darkTheme = {
@@ -11,7 +13,9 @@ export const darkTheme = {
   elements: 'var(--dark-blue-elements)',
   text: 'var(--white)',
   shadow: 'var(--shadow-dark)',
-  inputText: 'var(--white)',
+  placeholderText: 'hsl(0deg 0% 90%)',
+  loaderTrack: 'hsl(0deg 0% 90%)',
+  loaderFill: 'var(--white)',
 };
 
 /*

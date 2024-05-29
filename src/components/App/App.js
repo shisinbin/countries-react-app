@@ -4,10 +4,11 @@ import { ThemeProvider } from 'styled-components';
 import Header from '../Header';
 import CountrySearchForm from '../CountrySearchForm';
 import MaxWidthWrapper from '../MaxWidthWrapper';
-import CountryDetail from '../CountryDetail/CountryDetail';
-import CountryResultsGrid from '../CountryResultsGrid/CountryResultsGrid';
+import CountryDetail from '../CountryDetail';
+import CountryResultsGrid from '../CountryResultsGrid';
+import Loader from '../Loader';
 
-import GlobalStyles from '../GlobalStyles/GlobalStyles';
+import GlobalStyles from '../GlobalStyles';
 import { lightTheme, darkTheme } from '../../themes';
 import { COUNTRIES_PER_PAGE } from '../../constants';
 import { normaliseApiData, normaliseJsonData } from '../../helpers';
@@ -37,33 +38,6 @@ function App() {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   }
 
-  // React.useEffect(() => {
-  //   const ENDPOINT = 'http://localhost:8000/countries';
-  //   setStatus('loading');
-
-  //   async function fetchData() {
-  //     try {
-  //       const response = await fetch(ENDPOINT);
-
-  //       if (!response.ok) {
-  //         throw new Error(
-  //           `Error: (${response.status}) ${response.statusText}`
-  //         );
-  //       }
-
-  //       const json = await response.json();
-
-  //       setCountries(normaliseJsonData(json));
-  //       setStatus('success');
-  //     } catch (err) {
-  //       console.error(err.message);
-  //       setStatus('error');
-  //     }
-  //   }
-
-  //   fetchData();
-  // }, []);
-
   React.useEffect(() => {
     const apiEndpoint = 'https://restcountries.com/v3.1/all';
 
@@ -83,7 +57,7 @@ function App() {
         setCountries(normaliseApiData(json));
         setStatus('success');
       } catch (err) {
-        console.error(err);
+        console.error(err.message);
 
         setCountries(normaliseJsonData(localData.countries));
         setStatus('success'); // I guess it is some kind of success...
@@ -150,7 +124,7 @@ function App() {
         ) : (
           <>
             {status === 'idle' && null}
-            {status === 'loading' && <p>Loading...</p>}
+            {status === 'loading' && <Loader />}
             {status === 'error' && <p>Error</p>}
             {status === 'success' && (
               <>
