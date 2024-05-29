@@ -11,16 +11,12 @@ import Loader from '../Loader';
 import GlobalStyles from '../GlobalStyles';
 import { lightTheme, darkTheme } from '../../themes';
 import { COUNTRIES_PER_PAGE } from '../../constants';
-import { normaliseApiData, normaliseJsonData } from '../../helpers';
 
-import localData from '../../../data/data.json';
+import { useFetch } from '../../hooks/useFetch';
 
 function App() {
-  const [countries, setCountries] = React.useState([]);
+  const { data: countries, isLoading } = useFetch();
   const [selectedCountry, setSelectedCountry] = React.useState(null);
-
-  // idle || loading || success || error
-  const [status, setStatus] = React.useState('idle');
 
   const [searchTerm, setSearchTerm] = React.useState('');
   const [region, setRegion] = React.useState('');
@@ -37,35 +33,6 @@ function App() {
   function themeToggler() {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   }
-
-  React.useEffect(() => {
-    const apiEndpoint = 'https://restcountries.com/v3.1/all';
-
-    setStatus('loading');
-
-    async function fetchApiData() {
-      try {
-        const response = await fetch(apiEndpoint);
-
-        if (!response.ok) {
-          throw new Error(
-            `Error: (${response.status}) ${response.statusText}`
-          );
-        }
-        const json = await response.json();
-
-        setCountries(normaliseApiData(json));
-        setStatus('success');
-      } catch (err) {
-        console.error(err.message);
-
-        setCountries(normaliseJsonData(localData.countries));
-        setStatus('success'); // I guess it is some kind of success...
-      }
-    }
-
-    fetchApiData();
-  }, []);
 
   const filteredCountries = React.useMemo(() => {
     // any time it's required to filter the countries,
@@ -123,10 +90,8 @@ function App() {
           />
         ) : (
           <>
-            {status === 'idle' && null}
-            {status === 'loading' && <Loader />}
-            {status === 'error' && <p>Error</p>}
-            {status === 'success' && (
+            {isLoading && <Loader />}
+            {countries.length !== 0 && (
               <>
                 <CountrySearchForm
                   searchTerm={searchTerm}
