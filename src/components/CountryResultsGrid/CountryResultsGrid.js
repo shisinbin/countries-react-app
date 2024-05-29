@@ -29,7 +29,7 @@ function CountryResultsGrid({
         ))}
       </Wrapper>
       {totalPages > 1 && (
-        <ButtonWrapper>
+        <PaginationWrapper>
           <Button
             onClick={() => handlePageChange(1)}
             disabled={currentPage === 1}
@@ -42,7 +42,10 @@ function CountryResultsGrid({
           >
             <ChevronLeft size={24} strokeWidth={1.5} />
           </Button>
-          <PageInfo>{`Page ${currentPage} / ${totalPages}`}</PageInfo>
+          <PageInfo>
+            <PageSpan>Page </PageSpan>
+            {`${currentPage} / ${totalPages}`}
+          </PageInfo>
           <Button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
@@ -55,7 +58,7 @@ function CountryResultsGrid({
           >
             <ChevronsRight size={24} strokeWidth={1.5} />
           </Button>
-        </ButtonWrapper>
+        </PaginationWrapper>
       )}
     </>
   );
@@ -66,14 +69,29 @@ const Wrapper = styled.div`
   gap: 48px;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   justify-items: stretch;
+
+  @media ${({ theme }) => theme.queries.tabletAndSmaller} {
+    gap: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  @media ${({ theme }) => theme.queries.mobileAndSmaller} {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
 `;
 
-const ButtonWrapper = styled.div`
+const PaginationWrapper = styled.div`
   margin-top: 48px;
   padding-bottom: 32px;
   display: flex;
   justify-content: flex-end;
   gap: 8px;
+
+  @media ${({ theme }) => theme.queries.mobileAndSmaller} {
+    justify-content: center;
+  }
 `;
 
 const Button = styled.button`
@@ -98,6 +116,12 @@ const PageInfo = styled.p`
   padding: 12px 16px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.elements};
+`;
+
+const PageSpan = styled.span`
+  @media ${({ theme }) => theme.queries.mobileAndSmaller} {
+    display: none;
+  }
 `;
 
 export default CountryResultsGrid;

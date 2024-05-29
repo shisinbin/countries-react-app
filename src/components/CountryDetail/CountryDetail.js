@@ -40,17 +40,17 @@ function CountryDetail({
 
   return (
     <>
-      <Back onClick={handleGoBack}>
+      <BackButton onClick={handleGoBack}>
         <IconWrapper>
           <CornerDownLeft size={24} strokeWidth={1.5} />
         </IconWrapper>
         <ButtonText>Back to Home</ButtonText>
-      </Back>
-      <Wrapper>
+      </BackButton>
+      <SectionWrapper>
         <ImageWrapper>
           <Image src={flag} alt={`Flag of ${countryName}`} />
         </ImageWrapper>
-        <Details>
+        <DetailsWrapper>
           <Heading>{countryName}</Heading>
           <Info>
             {nativeNames.length > 0 && (
@@ -120,13 +120,13 @@ function CountryDetail({
               </Tags>
             </div>
           )}
-        </Details>
-      </Wrapper>
+        </DetailsWrapper>
+      </SectionWrapper>
     </>
   );
 }
 
-const Back = styled.button`
+const BackButton = styled.button`
   --shadow-color: ${({ theme }) => theme.shadow};
   padding: 12px 16px;
   position: relative;
@@ -156,28 +156,49 @@ const ButtonText = styled.span`
   display: block;
 `;
 
-const Wrapper = styled.section`
-  margin-top: 32px;
+const SectionWrapper = styled.section`
+  padding-top: 32px;
+  padding-bottom: 32px;
   display: flex;
   gap: 64px;
+
+  @media ${({ theme }) => theme.queries.laptopAndSmaller} {
+    gap: 48px;
+  }
+
+  @media ${({ theme }) => theme.queries.tabletAndSmaller} {
+    gap: 32px;
+  }
+
+  @media ${({ theme }) => theme.queries.mobileAndSmaller} {
+    flex-direction: column;
+
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 `;
 
 const ImageWrapper = styled.div`
   flex: 1;
+  overflow: hidden;
 `;
 
 const Image = styled.img`
-  height: 100%;
   width: 100%;
   object-fit: cover;
   aspect-ratio: 3 / 2;
+  border-radius: 4px;
 `;
 
-const Details = styled.div`
+const DetailsWrapper = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  @media ${({ theme }) => theme.queries.mobileAndSmaller} {
+    gap: 16px;
+  }
 `;
 
 const Heading = styled.h2``;
@@ -185,6 +206,14 @@ const Heading = styled.h2``;
 const Info = styled.div`
   columns: 2;
   column-gap: 16px;
+
+  & p:not(:last-child) {
+    margin-bottom: 4px;
+  }
+
+  @media ${({ theme }) => theme.queries.tabletAndSmaller} {
+    columns: 1;
+  }
 `;
 
 const Tags = styled.ul`

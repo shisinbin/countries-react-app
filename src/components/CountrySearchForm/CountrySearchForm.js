@@ -31,20 +31,24 @@ function CountrySearchForm({
         onChange={(ev) => setSearchTerm(ev.target.value)}
         clearSearchTerm={clearSearchTerm}
       />
-      <SelectLabel htmlFor={regionId}>Filter by Region:</SelectLabel>
-      <Select
-        id={regionId}
-        value={region}
-        name='region'
-        onChange={(event) => setRegion(event.target.value)}
-      >
-        <option value={''}>All</option>
-        {REGIONS.map((region) => (
-          <option value={region} key={region}>
-            {region}
-          </option>
-        ))}
-      </Select>
+      <SelectWrapper>
+        <SelectLabel htmlFor={regionId}>
+          Filter by Region:
+        </SelectLabel>
+        <Select
+          id={regionId}
+          value={region}
+          name='region'
+          onChange={(event) => setRegion(event.target.value)}
+        >
+          <option value={''}>All</option>
+          {REGIONS.map((region) => (
+            <option value={region} key={region}>
+              {region}
+            </option>
+          ))}
+        </Select>
+      </SelectWrapper>
     </Wrapper>
   );
 }
@@ -54,10 +58,27 @@ const Wrapper = styled.form`
   align-items: center;
   gap: 16px;
   margin-bottom: 32px;
+
+  @media ${({ theme }) => theme.queries.tabletAndSmaller} {
+    display: revert;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+`;
+
+const SelectWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @media ${({ theme }) => theme.queries.tabletAndSmaller} {
+    margin-top: 16px;
+  }
 `;
 
 const SelectLabel = styled.label`
   font-size: 14px;
+  text-align: right;
 `;
 
 export default CountrySearchForm;

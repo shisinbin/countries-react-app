@@ -1,3 +1,5 @@
+import { QUERIES } from './constants';
+
 export const lightTheme = {
   background: 'var(--light-gray-background)',
   elements: 'var(--white)',
@@ -6,6 +8,7 @@ export const lightTheme = {
   placeholderText: 'var(--dark-gray-input)',
   loaderTrack: 'hsl(0deg 0% 35%)',
   loaderFill: 'hsl(--dark-blue-background)',
+  queries: QUERIES,
 };
 
 export const darkTheme = {
@@ -16,6 +19,7 @@ export const darkTheme = {
   placeholderText: 'hsl(0deg 0% 90%)',
   loaderTrack: 'hsl(0deg 0% 90%)',
   loaderFill: 'var(--white)',
+  queries: QUERIES,
 };
 
 /*
