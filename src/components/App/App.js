@@ -17,7 +17,7 @@ function App() {
       <Header theme={theme} themeToggler={themeToggler} />
       <MaxWidthWrapper as='main'>
         <MainContent />
-        <Spacer size={64} />
+        <Spacer size={32} />
       </MaxWidthWrapper>
 
       <GlobalStyles />
