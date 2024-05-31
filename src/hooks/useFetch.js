@@ -2,7 +2,7 @@ import React from 'react';
 import { normaliseApiData, normaliseJsonData } from '../helpers';
 import localData from '../../data/data.json';
 
-const MAX_TIMEOUT_DURATION = 8000; // 8 seconds
+const MAX_TIMEOUT_DURATION = 1; // 8 seconds
 const apiEndpoint = 'https://restcountries.com/v3.1/all';
 
 export const useFetch = () => {
