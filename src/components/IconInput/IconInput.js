@@ -47,7 +47,6 @@ const IconWrapper = styled.div`
 `;
 
 const TextInput = styled.input`
-  --shadow-color: ${({ theme }) => theme.shadow};
   padding: 12px 16px;
   padding-left: calc(24px * 2);
   outline-offset: 2px;

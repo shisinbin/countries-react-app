@@ -127,7 +127,6 @@ function CountryDetail({
 }
 
 const BackButton = styled.button`
-  --shadow-color: ${({ theme }) => theme.shadow};
   padding: 12px 16px;
   position: relative;
   padding-left: 44px;
@@ -232,10 +231,8 @@ const Tag = styled.li`
 `;
 
 const TagButton = styled.button`
-  --shadow-color: ${({ theme }) => theme.shadow};
   padding: 4px 16px;
   border-radius: 4px;
-  /* border: 1px dotted lightgray; */
   background-color: ${({ theme }) => theme.elements};
   box-shadow: ${ELEVATIONS.small};
 

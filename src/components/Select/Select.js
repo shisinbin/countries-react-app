@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { ChevronDown } from 'react-feather';
 
 import { getDisplayedValue } from './Select.helpers';
@@ -28,6 +28,24 @@ function Select({ id, value, children, ...delegated }) {
   );
 }
 
+const oscillate = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+  75% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
 const Wrapper = styled.div`
   position: relative;
   width: max-content;
@@ -43,7 +61,6 @@ const NativeSelect = styled.select`
 `;
 
 const PresentationalBit = styled.div`
-  --shadow-color: ${({ theme }) => theme.shadow};
   background-color: ${({ theme }) => theme.elements};
   font-size: 14px;
   padding: 12px 16px;
@@ -57,7 +74,7 @@ const PresentationalBit = styled.div`
   }
 
   ${NativeSelect}:hover + & {
-    color: red;
+    /* color: hsl(120deg, 90%, 40%); */
   }
 `;
 
@@ -70,6 +87,10 @@ const IconWrapper = styled.div`
   height: 24px;
   width: 24px;
   pointer-events: none;
+
+  ${NativeSelect}:hover + ${PresentationalBit} & {
+    animation: ${oscillate} 0.6s ease-out;
+  }
 `;
 
 export default Select;

@@ -43,7 +43,6 @@ const WrapperButton = styled.button`
 `;
 
 const Wrapper = styled.article`
-  --shadow-color: ${({ theme }) => theme.shadow};
   flex-grow: 1;
   width: 100%;
   padding: 16px;

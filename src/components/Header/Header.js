@@ -29,7 +29,6 @@ function Header({ theme, themeToggler }) {
 }
 
 const Wrapper = styled.header`
-  --shadow-color: ${({ theme }) => theme.shadow};
   background-color: ${({ theme }) => theme.elements};
   box-shadow: ${ELEVATIONS.small};
   margin-bottom: 32px;

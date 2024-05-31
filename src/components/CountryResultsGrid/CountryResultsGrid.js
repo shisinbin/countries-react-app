@@ -94,7 +94,6 @@ const PaginationWrapper = styled.div`
 `;
 
 const Button = styled.button`
-  --shadow-color: ${({ theme }) => theme.shadow};
   padding: 12px 16px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.elements};

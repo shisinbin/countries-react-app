@@ -111,6 +111,8 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
+
+    --shadow-color: ${({ theme }) => theme.shadow};
   }
 `;
 
