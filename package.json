@@ -1,7 +1,6 @@
 {
   "name": "countries-react-app",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "predev": "rimraf .parcel-cache dist",
     "new-component": "new-component",
