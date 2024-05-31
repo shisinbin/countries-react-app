@@ -84,7 +84,6 @@ const Wrapper = styled.div`
 
 const PaginationWrapper = styled.div`
   margin-top: 48px;
-  padding-bottom: 32px;
   display: flex;
   justify-content: flex-end;
   gap: 8px;

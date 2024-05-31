@@ -158,7 +158,6 @@ const ButtonText = styled.span`
 
 const SectionWrapper = styled.section`
   padding-top: 32px;
-  padding-bottom: 32px;
   display: flex;
   gap: 64px;
 
