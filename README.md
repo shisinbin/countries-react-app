@@ -1,9 +1,9 @@
 <a name="top"></a>
 
-# Countries React App
-
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
+
+# Countries React App
 
 An app that allows the user to find a country and peruse over its details.
 
