@@ -16,9 +16,11 @@ function MainContent() {
   const [region, setRegion] = React.useState('');
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const filteredCountries = React.useMemo(() => {
+  React.useEffect(() => {
     setCurrentPage(1); // Reset currentPage whenever filters change
+  }, [searchTerm, region]);
 
+  const filteredCountries = React.useMemo(() => {
     return countries.filter((country) => {
       const matchesSearchTerm = country.countryName
         .toLowerCase()
