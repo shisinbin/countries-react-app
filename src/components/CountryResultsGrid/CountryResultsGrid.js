@@ -116,6 +116,11 @@ const PageInfo = styled.p`
   padding: 12px 16px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.elements};
+
+  @media ${({ theme }) => theme.queries.mobileAndSmaller} {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
 `;
 
 const PageSpan = styled.span`
