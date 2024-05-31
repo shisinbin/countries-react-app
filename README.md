@@ -105,6 +105,11 @@ Some thoughts:
 
 5. Continue to think about ways in which the components could be designed better. For example `MainContent` is fairly bloated, and contains a lot of state that it passes along as props. Could the search form state be held in context? Could that and other components be broken down further?
 
+### Useful resources
+
+- [Feather Icons](https://feathericons.com/)
+- [Favicons](https://favicon.io/)
+
 ### Author
 
 - Github - [shisinbin](https://github.com/shisinbin)
