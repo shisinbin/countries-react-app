@@ -12,7 +12,7 @@ import { ELEVATIONS } from '../../constants';
 
 function CountryResultsGrid({
   handleCountrySelect,
-  currentCountries,
+  countries,
   currentPage,
   totalPages,
   handlePageChange,
@@ -20,7 +20,7 @@ function CountryResultsGrid({
   return (
     <>
       <Wrapper>
-        {currentCountries?.map((country) => (
+        {countries?.map((country) => (
           <CountryCard
             key={country.numericCode}
             country={country}

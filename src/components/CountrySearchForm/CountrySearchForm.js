@@ -12,9 +12,6 @@ function CountrySearchForm({
   region,
   setRegion,
 }) {
-  // const [searchTerm, setSearchTerm] = React.useState('');
-  // const [region, setRegion] = React.useState('');
-
   const id = React.useId();
   const searchTermId = `${id}-searchTerm`;
   const regionId = `${id}-region`;

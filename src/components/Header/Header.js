@@ -10,7 +10,7 @@ function Header({ theme, themeToggler }) {
     <Wrapper>
       <Content>
         <Title>Where in the world?</Title>
-        <ThemeAction onClick={themeToggler}>
+        <ThemeButton onClick={themeToggler}>
           {theme === 'light' ? (
             <>
               <Moon size={14} />
@@ -22,7 +22,7 @@ function Header({ theme, themeToggler }) {
               Light Mode
             </>
           )}
-        </ThemeAction>
+        </ThemeButton>
       </Content>
     </Wrapper>
   );
@@ -44,7 +44,9 @@ const Title = styled.h1`
   font-size: 16px;
 `;
 
-const ThemeAction = styled.button`
+const ThemeButton = styled.button`
+  padding: 8px;
+  margin: -8px;
   margin-left: auto;
   font-size: 14px;
   display: flex;

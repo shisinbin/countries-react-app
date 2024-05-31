@@ -1,10 +1,5 @@
 export const normaliseJsonData = (data) => {
   return data.map((country) => {
-    // if (!Object.keys(country).includes('currencies')) {
-    //   console.log(
-    //     `country with name ${country.name} has no currencies key!`
-    //   );
-    // }
     return {
       numericCode: country.numericCode || Math.random().toString(),
       alpha3Code: country.alpha3Code,

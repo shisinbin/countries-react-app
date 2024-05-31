@@ -4,9 +4,9 @@ import { ThemeProvider } from 'styled-components';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import Header from '../Header';
 import MainContent from '../MainContent/MainContent';
+import GlobalStyles from '../GlobalStyles';
 
 import { useTheme } from '../../hooks/useTheme';
-import GlobalStyles from '../GlobalStyles';
 
 function App() {
   const { theme, themeToggler, currentTheme } = useTheme();
