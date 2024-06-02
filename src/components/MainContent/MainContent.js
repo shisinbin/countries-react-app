@@ -16,9 +16,15 @@ function MainContent() {
   const [region, setRegion] = React.useState('');
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  React.useEffect(() => {
-    setCurrentPage(1); // Reset currentPage whenever filters change
-  }, [searchTerm, region]);
+  const handleSearchTermChange = (term) => {
+    setSearchTerm(term);
+    setCurrentPage(1);
+  };
+
+  const handleRegionChange = (region) => {
+    setRegion(region);
+    setCurrentPage(1);
+  };
 
   const filteredCountries = React.useMemo(() => {
     return countries.filter((country) => {
@@ -64,9 +70,9 @@ function MainContent() {
         <>
           <CountrySearchForm
             searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
+            handleSearchTermChange={handleSearchTermChange}
             region={region}
-            setRegion={setRegion}
+            handleRegionChange={handleRegionChange}
           />
           <CountryResultsGrid
             handleCountrySelect={setSelectedCountry}

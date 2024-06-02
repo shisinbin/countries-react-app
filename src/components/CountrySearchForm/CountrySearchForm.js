@@ -8,9 +8,9 @@ const REGIONS = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
 function CountrySearchForm({
   searchTerm,
-  setSearchTerm,
+  handleSearchTermChange,
   region,
-  setRegion,
+  handleRegionChange,
 }) {
   const id = React.useId();
   const searchTermId = `${id}-searchTerm`;
@@ -24,8 +24,8 @@ function CountrySearchForm({
         placeholder='Search for a country...'
         type='text'
         value={searchTerm}
-        onChange={(ev) => setSearchTerm(ev.target.value)}
-        clearSearchTerm={() => setSearchTerm('')}
+        onChange={(ev) => handleSearchTermChange(ev.target.value)}
+        clearSearchTerm={() => handleSearchTermChange('')}
       />
       <SelectWrapper>
         <SelectLabel htmlFor={regionId}>
@@ -35,7 +35,7 @@ function CountrySearchForm({
           id={regionId}
           value={region}
           name='region'
-          onChange={(event) => setRegion(event.target.value)}
+          onChange={(event) => handleRegionChange(event.target.value)}
         >
           <option value={''}>All</option>
           {REGIONS.map((region) => (
