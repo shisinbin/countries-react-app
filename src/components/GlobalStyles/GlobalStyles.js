@@ -104,8 +104,6 @@ const GlobalStyles = createGlobalStyle`
 
     --shadow-light: 0deg 0% 88%;
     --shadow-dark: 207deg 20% 12%;
-
-    --temp: hsl(0deg 0% 35%);
   }
 
   body {

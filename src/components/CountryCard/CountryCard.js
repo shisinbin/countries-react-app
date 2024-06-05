@@ -2,64 +2,35 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Card from '../Card';
-import { ELEVATIONS } from '../../constants';
 
 function CountryCard({ country, handleCountrySelect }) {
   const { countryName, population, flag, region, capital } = country;
   return (
-    <WrapperButton onClick={() => handleCountrySelect(country)}>
-      <Wrapper>
-        <ImageWrapper>
-          <Image alt={`Flag of ${countryName}`} src={flag} />
-        </ImageWrapper>
-        <Details>
-          <Heading>{countryName}</Heading>
-          {Number.isFinite(population) && (
-            <p>
-              <strong>Population:</strong>{' '}
-              {population.toLocaleString()}
-            </p>
-          )}
-          {region && (
-            <p>
-              <strong>Region:</strong> {region}
-            </p>
-          )}
-          {capital && (
-            <p>
-              <strong>Capital:</strong> {capital}
-            </p>
-          )}
-        </Details>
-      </Wrapper>
-    </WrapperButton>
+    <Card onClick={() => handleCountrySelect(country)}>
+      <ImageWrapper>
+        <Image alt={`Flag of ${countryName}`} src={flag} />
+      </ImageWrapper>
+      <Details>
+        <Heading>{countryName}</Heading>
+        {Number.isFinite(population) && (
+          <p>
+            <strong>Population:</strong> {population.toLocaleString()}
+          </p>
+        )}
+        {region && (
+          <p>
+            <strong>Region:</strong> {region}
+          </p>
+        )}
+        {capital && (
+          <p>
+            <strong>Capital:</strong> {capital}
+          </p>
+        )}
+      </Details>
+    </Card>
   );
 }
-
-const WrapperButton = styled.button`
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-`;
-
-const Wrapper = styled.article`
-  flex-grow: 1;
-  width: 100%;
-  padding: 16px;
-  background-color: ${({ theme }) => theme.elements};
-  border-radius: 8px;
-  box-shadow: ${ELEVATIONS.medium};
-  cursor: pointer;
-
-  /* To hide flag beyond rounded corners */
-  overflow: hidden;
-
-  &:hover,
-  &:focus {
-    box-shadow: ${ELEVATIONS.large};
-    transform: scale(1.01);
-  }
-`;
 
 const ImageWrapper = styled.div`
   margin: -16px;
