@@ -64,7 +64,7 @@ function CountryDetail({
                 {nativeNames.join(', ')}
               </InfoDetail>
             )}
-            {population && (
+            {Number.isFinite(population) && (
               <InfoDetail label={'Population'}>
                 {population.toLocaleString()}
               </InfoDetail>
